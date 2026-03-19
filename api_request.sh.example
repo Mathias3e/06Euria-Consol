@@ -1,9 +1,0 @@
-send_api_request() {
-  curl -k -sS ... \
-  ... \
-  ... \
-  ... \
-  ... \
-  ... \
-  --data-raw "{\"content\":\"$1\",\"file_ids\":[],\"tools\":[\"faq_search\",\"web_search\"],\"model\":\"expert\"}"
-}

@@ -1,0 +1,10 @@
+export userId="123456"
+export sasessionToken="Your Sasession Token"
+export euriaApiToken="Your Euria Token"
+export model="expert or fast"
+export userName="Your Name"
+
+--- How to get Values ---
+userId: https://ksuite.infomaniak.com/[this number]/euria
+sasessionToken: In the Developer Tools in Application, and then under Cookies "SASESSION"
+euriaApiToken: In the Developer Tools in Application, and then under Cookies "EURIA-API-XSRF-TOKEN"

@@ -1,10 +1,15 @@
-source ./api_request.sh
-echo -n -e "${C2}Mathias:${C6} "
+echo -n -e "${C2}${userName}:${C6} "
 read prompt
 echo ""
 echo -e -n "${C2}Euria:${C6} "
 
-raw_response=$(send_api_request "$prompt")
+raw_response=$(curl -k -sS "https://euria.infomaniak.com/api/1/accounts/${userId}/conversations" \
+  -b "SASESSION=${sasessionToken}; EURIA-API-XSRF-TOKEN=${euriaApiToken}" \
+  -H 'Origin: https://euria.infomaniak.com' \
+  -H 'Referer: https://euria.infomaniak.com/' \
+  -H 'accept: application/json' \
+  -H 'content-type: application/json' \
+  --data-raw "{\"content\":\"${prompt}\",\"file_ids\":[],\"tools\":[\"faq_search\",\"web_search\"],\"model\":\"${model}\"}")
 
 json_response=$(echo "$raw_response" | grep -o 'data: {.*}' | sed 's/^data: //')
 conversationsId=$(echo "$json_response" | jq -r 'select(.message.role=="user") | .message.parent_id' | head -1)
@@ -18,3 +23,4 @@ echo "prompt          : $prompt" >> conections.dat
 echo "parentRespondId : $parentRespondId" >> conections.dat
 
 echo $raw_response > respons.txt
+read
