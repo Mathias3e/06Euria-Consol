@@ -9,7 +9,7 @@ raw_response=$(curl -k -sS "https://euria.infomaniak.com/api/1/accounts/${userId
   -H 'Referer: https://euria.infomaniak.com/' \
   -H 'accept: application/json' \
   -H 'content-type: application/json' \
-  --data-raw "{\"content\":\"${prompt}\",\"file_ids\":[],\"tools\":[\"faq_search\",\"web_search\"],\"model\":\"${model}\"}")
+  --data-raw "{\"content\":\"${prompt}\",\"file_ids\":[],\"tools\":[${skills}],\"model\":\"${model}\"}")
 
 json_response=$(echo "$raw_response" | grep -o 'data: {.*}' | sed 's/^data: //')
 conversationsId=$(echo "$json_response" | jq -r 'select(.message.role=="user") | .message.parent_id' | head -1)

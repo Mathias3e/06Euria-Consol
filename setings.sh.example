@@ -3,6 +3,7 @@ export sasessionToken="Your Sasession Token"
 export euriaApiToken="Your Euria Token"
 export model="expert or fast"
 export userName="Your Name"
+export skills="\"faq_search\",\"web_search\""
 
 --- How to get Values ---
 userId: https://ksuite.infomaniak.com/[this number]/euria
